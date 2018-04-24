@@ -17,9 +17,9 @@ namespace Repository
             this.context = context;
         }
 
-        public IEnumerable<Adresse> GetAll()
+        public IQueryable<Adresse> GetAll()
         {
-            return context.Adresses.ToList();
+            return context.Adresses;
         }
 
         public Adresse GetById(int id)

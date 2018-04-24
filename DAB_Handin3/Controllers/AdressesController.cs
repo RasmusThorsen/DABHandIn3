@@ -10,17 +10,20 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using DAB_Handin3.Models;
+using Repository;
 
 namespace DAB_Handin3.Controllers
 {
     public class AdressesController : ApiController
     {
         private DAB_Handin3Context db = new DAB_Handin3Context();
+        private AdresseRepository adresseRepo = new AdresseRepository(new DAB_Handin3Context());
 
         // GET: api/Adresses
         public IQueryable<Adresse> GetAdresses()
         {
-            return db.Adresses;
+            //return db.Adresses;
+            return adresseRepo.GetAll();
         }
 
         // GET: api/Adresses/5
