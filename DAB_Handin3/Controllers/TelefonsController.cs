@@ -10,12 +10,14 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using DAB_Handin3.Models;
+using Repository;
 
 namespace DAB_Handin3.Controllers
 {
     public class TelefonsController : ApiController
     {
         private DAB_Handin3Context db = new DAB_Handin3Context();
+        private TelefonRepository repo = new TelefonRepository(db);
 
         // GET: api/Telefons
         public IQueryable<Telefon> GetTelefons()

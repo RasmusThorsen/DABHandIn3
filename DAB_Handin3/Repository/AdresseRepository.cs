@@ -4,14 +4,15 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAB_Handin3.Models;
 
 namespace Repository
 {
     class AdresseRepository : IRepository<Adresse>
     {
-        private PersonKartotekContext context;
+        private DAB_Handin3Context context;
 
-        public AdresseRepository(PersonKartotekContext context)
+        public AdresseRepository(DAB_Handin3Context context)
         {
             this.context = context;
         }
