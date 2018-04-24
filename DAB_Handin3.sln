@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAB_Handin3", "DAB_Handin3\DAB_Handin3.csproj", "{48A019A4-A140-4853-B2B3-3A714F8EEC99}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{48A019A4-A140-4853-B2B3-3A714F8EEC99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48A019A4-A140-4853-B2B3-3A714F8EEC99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48A019A4-A140-4853-B2B3-3A714F8EEC99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48A019A4-A140-4853-B2B3-3A714F8EEC99}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {80812350-7854-42C6-A287-C42042390BA4}
+	EndGlobalSection
+EndGlobal
