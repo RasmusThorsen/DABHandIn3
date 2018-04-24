@@ -4,36 +4,37 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAB_Handin3.Models;
 
-namespace HandIn2._2_Relation_Database.Application
+namespace Repository
 {
     class TelefonRepository
     {
-        private PersonKartotekContext context;
+        private DAB_Handin3Context context;
 
-        public TelefonRepository(PersonKartotekContext context)
+        public TelefonRepository(DAB_Handin3Context context)
         {
             this.context = context;
         }
 
         public IEnumerable<Telefon> GetAll()
         {
-            return context.Telefoner.ToList();
+            return context.Telefons.ToList();
         }
 
         public Telefon GetById(int id)
         {
-            return (context.Telefoner.Find(id) ?? throw new InvalidOperationException());
+            return (context.Telefons.Find(id) ?? throw new InvalidOperationException());
         }
 
         public void Insert(Telefon entity)
         {
-            context.Telefoner.Add(entity);
+            context.Telefons.Add(entity);
         }
 
         public void Delete(int id)
         {
-            context.Telefoner.Remove(context.Telefoner.Find(id) ?? throw new InvalidOperationException());
+            context.Telefons.Remove(context.Telefons.Find(id) ?? throw new InvalidOperationException());
         }
 
         public void Update(Telefon entity)

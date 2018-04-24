@@ -4,37 +4,38 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAB_Handin3.Models;
 
-namespace HandIn2._2_Relation_Database.Application
+namespace Repository
 {
     class PersonRepository : IRepository<Person>
     {
-        private PersonKartotekContext context;
+        private DAB_Handin3Context context;
 
-        public PersonRepository(PersonKartotekContext context)
+        public PersonRepository(DAB_Handin3Context context)
         {
             this.context = context;
         }
 
         public IEnumerable<Person> GetAll()
         {
-            return context.Persons.ToList();
+            return context.People.ToList();
         }
 
         public Person GetById(int id)
         {
-            var pers = context.Persons.Find(id);
+            var pers = context.People.Find(id);
             return pers;
         }
 
         public void Insert(Person entity)
         {
-            context.Persons.Add(entity);
+            context.People.Add(entity);
         }
 
         public void Delete(int id)
         {
-            context.Persons.Remove(context.Persons.Find(id) ?? throw new InvalidOperationException());
+            context.People.Remove(context.People.Find(id) ?? throw new InvalidOperationException());
         }
 
         public void Update(Person entity)

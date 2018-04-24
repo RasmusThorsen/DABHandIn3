@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HandIn2._2_Relation_Database.Application
+namespace Repository
 {
     class AdresseRepository : IRepository<Adresse>
     {
