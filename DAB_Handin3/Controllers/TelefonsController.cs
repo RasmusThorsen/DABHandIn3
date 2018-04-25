@@ -16,20 +16,21 @@ namespace DAB_Handin3.Controllers
 {
     public class TelefonsController : ApiController
     {
-        private DAB_Handin3Context db = new DAB_Handin3Context();
-        private TelefonRepository repo = new TelefonRepository(db);
+        private TelefonRepository repository = new TelefonRepository(new DAB_Handin3Context());
 
         // GET: api/Telefons
         public IQueryable<Telefon> GetTelefons()
         {
-            return db.Telefons;
+            return repository.GetAll().AsQueryable();
+            //return db.Telefons;
         }
 
         // GET: api/Telefons/5
         [ResponseType(typeof(Telefon))]
         public async Task<IHttpActionResult> GetTelefon(string id)
         {
-            Telefon telefon = await db.Telefons.FindAsync(id);
+            Telefon telefon = repository.GetById(int.Parse(id));
+            //Telefon telefon = await db.Telefons.FindAsync(id);
             if (telefon == null)
             {
                 return NotFound();
@@ -52,11 +53,12 @@ namespace DAB_Handin3.Controllers
                 return BadRequest();
             }
 
-            db.Entry(telefon).State = EntityState.Modified;
-
+            //db.Entry(telefon).State = EntityState.Modified;
+            repository.Update(telefon);
             try
             {
-                await db.SaveChangesAsync();
+                //await db.SaveChangesAsync();
+                repository.Save();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -82,11 +84,13 @@ namespace DAB_Handin3.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Telefons.Add(telefon);
+            //db.Telefons.Add(telefon);
+            repository.Insert(telefon);
 
             try
             {
-                await db.SaveChangesAsync();
+                //await db.SaveChangesAsync();
+                repository.Save();
             }
             catch (DbUpdateException)
             {
@@ -107,14 +111,17 @@ namespace DAB_Handin3.Controllers
         [ResponseType(typeof(Telefon))]
         public async Task<IHttpActionResult> DeleteTelefon(string id)
         {
-            Telefon telefon = await db.Telefons.FindAsync(id);
+            //Telefon telefon = await db.Telefons.FindAsync(id);
+            Telefon telefon = repository.GetById(int.Parse(id));
             if (telefon == null)
             {
                 return NotFound();
             }
 
-            db.Telefons.Remove(telefon);
-            await db.SaveChangesAsync();
+            //db.Telefons.Remove(telefon);
+            //await db.SaveChangesAsync();
+            repository.Delete(int.Parse(id));
+            repository.Save();
 
             return Ok(telefon);
         }
@@ -123,14 +130,16 @@ namespace DAB_Handin3.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                //db.Dispose();
+                repository.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool TelefonExists(string id)
         {
-            return db.Telefons.Count(e => e.Nummer == id) > 0;
+            //return db.Telefons.Count(e => e.Nummer == id) > 0;
+            return repository.GetAll().Count(e => e.Nummer == id) > 0;
         }
     }
 }
