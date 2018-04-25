@@ -212,14 +212,16 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adresse.cs" />
+    <Compile Include="Models\AdresseDTO.cs" />
     <Compile Include="Models\By.cs" />
     <Compile Include="Models\DAB_Handin3Context.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\PersonDTO.cs" />
     <Compile Include="Models\Telefon.cs" />
+    <Compile Include="Models\TelefonDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\AdresseRepository.cs" />
     <Compile Include="Repository\ByRepository.cs" />
-    <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\PersonRepository.cs" />
     <Compile Include="Repository\TelefonRepository.cs" />
   </ItemGroup>

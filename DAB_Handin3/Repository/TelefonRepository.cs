@@ -19,7 +19,7 @@ namespace Repository
 
         public IEnumerable<Telefon> GetAll()
         {
-            return context.Telefons.ToList();
+            return context.Telefons;
         }
 
         public Telefon GetById(int id)

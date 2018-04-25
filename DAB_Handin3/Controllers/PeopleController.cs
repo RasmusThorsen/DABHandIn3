@@ -18,9 +18,16 @@ namespace DAB_Handin3.Controllers
     {
         private PersonRepository repository = new PersonRepository(new DAB_Handin3Context());
         // GET: api/People
-        public IQueryable<Person> GetPeople()
+        public IEnumerable<PersonDTO> GetPeople()
         {
-            return repository.GetAll().AsQueryable();
+            //return repository.GetAll().AsQueryable();
+            List<PersonDTO> list = new List<PersonDTO>();
+            foreach (var person in repository.GetAll())
+            {
+                list.Add(new PersonDTO(person));
+            }
+
+            return list;
         }
 
         // GET: api/People/5
@@ -83,12 +90,9 @@ namespace DAB_Handin3.Controllers
             repository.Insert(person);
             repository.Save();
 
-            foreach (var adresse in person.Adresse)
-            {
-                adresse.Persons = null;
-            }
+            var dto = new PersonDTO(person);
 
-            return CreatedAtRoute("DefaultApi", new { id = person.PersonID }, person);
+            return CreatedAtRoute("DefaultApi", new { id = person.PersonID }, dto);
         }
 
         // DELETE: api/People/5

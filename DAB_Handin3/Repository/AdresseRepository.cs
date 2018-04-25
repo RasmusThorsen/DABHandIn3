@@ -8,7 +8,7 @@ using DAB_Handin3.Models;
 
 namespace Repository
 {
-    class AdresseRepository : IRepository<Adresse>
+    class AdresseRepository
     {
         private DAB_Handin3Context context;
 
@@ -19,7 +19,8 @@ namespace Repository
 
         public IEnumerable<Adresse> GetAll()
         {
-            return context.Adresses.ToList();
+            //return context.Adresses.Include(x => x.Persons).ToList();
+            return context.Adresses;
         }
 
         public Adresse GetById(int id)

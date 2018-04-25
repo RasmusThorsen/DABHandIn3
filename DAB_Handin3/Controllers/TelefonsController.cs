@@ -19,9 +19,9 @@ namespace DAB_Handin3.Controllers
         private TelefonRepository repository = new TelefonRepository(new DAB_Handin3Context());
 
         // GET: api/Telefons
-        public IQueryable<Telefon> GetTelefons()
+        public IEnumerable<Telefon> GetTelefons()
         {
-            return repository.GetAll().AsQueryable();
+            return repository.GetAll();
         }
 
         // GET: api/Telefons/5

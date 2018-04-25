@@ -13,7 +13,7 @@ namespace DAB_Handin3.Models
         public string Vejnavn { get; set; }
         public string Husnummer { get; set; }
         public string Type { get; set; }
-        public List<Person> Persons { get; set; }
+        public virtual List<Person> Persons { get; set; }
 
         public Adresse()
         {
