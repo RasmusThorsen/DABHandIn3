@@ -30,37 +30,37 @@ namespace DAB_Handin3.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-            var list = new List<Person>();
+            //var list = new List<Person>();
             
-            context.People.AddOrUpdate(p => p.Fornavn,
-                new Person {Fornavn = "Rasmus", Efternavn = "Thorsen", Email = "rasmus@mail.dk", Type = "Studerende"},
-                new Person { Fornavn = "Julie", Efternavn = "Steenshard", Email = "julie@mail.dk", Type = "Studerende"},
-                new Person { Fornavn = "Nicolai", Efternavn = "Andersen", Email = "nicolai@mail.dk", Type = "Studerende" },
-                new Person { Fornavn = "Claus", Efternavn = "Hansen", Email = "claus@mail.dk", Type = "Underviser" });
+            //context.People.AddOrUpdate(p => p.Fornavn,
+            //    new Person {Fornavn = "Rasmus", Efternavn = "Thorsen", Email = "rasmus@mail.dk", Type = "Studerende"},
+            //    new Person { Fornavn = "Julie", Efternavn = "Steenshard", Email = "julie@mail.dk", Type = "Studerende"},
+            //    new Person { Fornavn = "Nicolai", Efternavn = "Andersen", Email = "nicolai@mail.dk", Type = "Studerende" },
+            //    new Person { Fornavn = "Claus", Efternavn = "Hansen", Email = "claus@mail.dk", Type = "Underviser" });
 
-            list.Add(context.People.Single(r => r.PersonID == 1));
-            context.SaveChanges();
-            context.Adresses.AddOrUpdate(a => a.Vejnavn,
-                new Adresse {Husnummer = "28", Vejnavn = "Fuglesangs Allé", Type = "Hjemme"},
-                new Adresse {Husnummer = "9", Vejnavn = "Brendstupsgårdvej", Type = "Hjemme"},
-                new Adresse
-                {
-                    Husnummer = "22",
-                    Vejnavn = "Finlandsgade",
-                    Type = "Studie",
-                    Persons = list
+            //list.Add(context.People.Single(r => r.PersonID == 1));
+            //context.SaveChanges();
+            //context.Adresses.AddOrUpdate(a => a.Vejnavn,
+            //    new Adresse {Husnummer = "28", Vejnavn = "Fuglesangs Allé", Type = "Hjemme"},
+            //    new Adresse {Husnummer = "9", Vejnavn = "Brendstupsgårdvej", Type = "Hjemme"},
+            //    new Adresse
+            //    {
+            //        Husnummer = "22",
+            //        Vejnavn = "Finlandsgade",
+            //        Type = "Studie",
+            //        Persons = list
                   
-                });
+            //    });
             
-            context.Telefons.AddOrUpdate(t => t.Nummer,
-                new Telefon {Nummer = "94783721", Teleselskab = "TDC", Type = "Privat"},
-                new Telefon { Nummer = "74839583", Teleselskab = "CBB", Type = "Arbejde" },
-                new Telefon { Nummer = "37489673", Teleselskab = "Telia", Type = "Privat" });
+            //context.Telefons.AddOrUpdate(t => t.Nummer,
+            //    new Telefon {Nummer = "94783721", Teleselskab = "TDC", Type = "Privat"},
+            //    new Telefon { Nummer = "74839583", Teleselskab = "CBB", Type = "Arbejde" },
+            //    new Telefon { Nummer = "37489673", Teleselskab = "Telia", Type = "Privat" });
 
-            context.Bies.AddOrUpdate(t => t.Bynavn,
-                new By {Bynavn = "Aarhus", Postnummer = "8100"},
-                new By { Bynavn = "Aarhus V", Postnummer = "8210" },
-                new By { Bynavn = "Aarhus N", Postnummer = "8200"});
+            //context.Bies.AddOrUpdate(t => t.Bynavn,
+            //    new By {Bynavn = "Aarhus", Postnummer = "8100"},
+            //    new By { Bynavn = "Aarhus V", Postnummer = "8210" },
+            //    new By { Bynavn = "Aarhus N", Postnummer = "8200"});
 
         }
     }
