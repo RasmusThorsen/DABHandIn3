@@ -10,8 +10,8 @@ namespace DAB_Handin3.Models
     {
         [Key]
         public int PersonID { get; set; }
-        public List<Adresse> Adresse { get; set; }
-        public List<Telefon> Telefon { get; set; }
+        public virtual List<Adresse> Adresse { get; set; }
+        public virtual List<Telefon> Telefon { get; set; }
         public string Fornavn { get; set; }
         public string Mellemnavn { get; set; }
         public string Efternavn { get; set; }

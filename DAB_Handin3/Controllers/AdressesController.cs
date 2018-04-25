@@ -16,21 +16,25 @@ namespace DAB_Handin3.Controllers
 {
     public class AdressesController : ApiController
     {
-        private DAB_Handin3Context db = new DAB_Handin3Context();
-        private AdresseRepository adresseRepo = new AdresseRepository(new DAB_Handin3Context());
-
+        private AdresseRepository repository = new AdresseRepository(new DAB_Handin3Context());
         // GET: api/Adresses
-        public IQueryable<Adresse> GetAdresses()
+        public IEnumerable<AdresseDTO> GetAdresses()
         {
-            //return db.Adresses;
-            return adresseRepo.GetAll();
+            //return repository.GetAll();
+            List<AdresseDTO> list = new List<AdresseDTO>();
+            foreach (var adresse in repository.GetAll())
+            {
+                list.Add(new AdresseDTO(adresse));
+            }
+
+            return list;
         }
 
         // GET: api/Adresses/5
         [ResponseType(typeof(Adresse))]
         public async Task<IHttpActionResult> GetAdresse(int id)
         {
-            Adresse adresse = await db.Adresses.FindAsync(id);
+            Adresse adresse = repository.GetById(id);
             if (adresse == null)
             {
                 return NotFound();
@@ -53,11 +57,10 @@ namespace DAB_Handin3.Controllers
                 return BadRequest();
             }
 
-            db.Entry(adresse).State = EntityState.Modified;
-
+            repository.Update(adresse);
             try
             {
-                await db.SaveChangesAsync();
+                repository.Save();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -70,7 +73,7 @@ namespace DAB_Handin3.Controllers
                     throw;
                 }
             }
-
+           
             return StatusCode(HttpStatusCode.NoContent);
         }
 
@@ -83,29 +86,26 @@ namespace DAB_Handin3.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Adresses.Add(adresse);
-            await db.SaveChangesAsync();
+            repository.Insert(adresse);
+            repository.Save();
 
-            foreach (var person in adresse.Persons)
-            {
-                person.Adresse = null;
-            }
+            var dto = new AdresseDTO(adresse);
 
-            return CreatedAtRoute("DefaultApi", new { id = adresse.AdresseID }, adresse);
+            return CreatedAtRoute("DefaultApi", new { id = adresse.AdresseID }, dto);
         }
 
         // DELETE: api/Adresses/5
         [ResponseType(typeof(Adresse))]
         public async Task<IHttpActionResult> DeleteAdresse(int id)
         {
-            Adresse adresse = await db.Adresses.FindAsync(id);
+            Adresse adresse = repository.GetById(id);
             if (adresse == null)
             {
                 return NotFound();
             }
 
-            db.Adresses.Remove(adresse);
-            await db.SaveChangesAsync();
+            repository.Delete(id);
+            repository.Save();
 
             return Ok(adresse);
         }
@@ -114,14 +114,14 @@ namespace DAB_Handin3.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                repository.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool AdresseExists(int id)
         {
-            return db.Adresses.Count(e => e.AdresseID == id) > 0;
+            return repository.GetAll().Count(e => e.AdresseID == id) > 0;
         }
     }
 }

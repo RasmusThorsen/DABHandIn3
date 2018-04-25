@@ -10,24 +10,25 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using DAB_Handin3.Models;
+using Repository;
 
 namespace DAB_Handin3.Controllers
 {
     public class BiesController : ApiController
     {
-        private DAB_Handin3Context db = new DAB_Handin3Context();
+        private ByRepository repository = new ByRepository(new DAB_Handin3Context());
 
         // GET: api/Bies
         public IQueryable<By> GetBies()
         {
-            return db.Bies;
+            return repository.GetAll().AsQueryable();
         }
 
         // GET: api/Bies/5
         [ResponseType(typeof(By))]
         public async Task<IHttpActionResult> GetBy(string id)
         {
-            By by = await db.Bies.FindAsync(id);
+            By by = repository.GetById(int.Parse(id));
             if (by == null)
             {
                 return NotFound();
@@ -50,11 +51,11 @@ namespace DAB_Handin3.Controllers
                 return BadRequest();
             }
 
-            db.Entry(by).State = EntityState.Modified;
+            repository.Update(by);
 
             try
             {
-                await db.SaveChangesAsync();
+                repository.Save();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -80,11 +81,11 @@ namespace DAB_Handin3.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Bies.Add(by);
+            repository.Insert(by);
 
             try
             {
-                await db.SaveChangesAsync();
+                repository.Save();
             }
             catch (DbUpdateException)
             {
@@ -97,7 +98,7 @@ namespace DAB_Handin3.Controllers
                     throw;
                 }
             }
-
+            
             return CreatedAtRoute("DefaultApi", new { id = by.Postnummer }, by);
         }
 
@@ -105,14 +106,14 @@ namespace DAB_Handin3.Controllers
         [ResponseType(typeof(By))]
         public async Task<IHttpActionResult> DeleteBy(string id)
         {
-            By by = await db.Bies.FindAsync(id);
+            By by = repository.GetById(int.Parse(id));
             if (by == null)
             {
                 return NotFound();
             }
 
-            db.Bies.Remove(by);
-            await db.SaveChangesAsync();
+            repository.Delete(int.Parse(id));
+            repository.Save();
 
             return Ok(by);
         }
@@ -121,14 +122,14 @@ namespace DAB_Handin3.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                repository.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool ByExists(string id)
         {
-            return db.Bies.Count(e => e.Postnummer == id) > 0;
+            return repository.GetAll().Count(e => e.Postnummer == id) > 0;
         }
     }
 }

@@ -8,7 +8,7 @@ using DAB_Handin3.Models;
 
 namespace Repository
 {
-    class ByRepository : IRepository<By>
+    class ByRepository
     {
         private DAB_Handin3Context context;
 
@@ -19,7 +19,7 @@ namespace Repository
 
         public IEnumerable<By> GetAll()
         {
-            return context.Bies.ToList();
+            return context.Bies;
         }
 
         public By GetById(int id)

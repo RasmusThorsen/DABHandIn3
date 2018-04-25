@@ -10,24 +10,31 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using DAB_Handin3.Models;
+using Repository;
 
 namespace DAB_Handin3.Controllers
 {
     public class PeopleController : ApiController
     {
-        private DAB_Handin3Context db = new DAB_Handin3Context();
-
+        private PersonRepository repository = new PersonRepository(new DAB_Handin3Context());
         // GET: api/People
-        public IQueryable<Person> GetPeople()
+        public IEnumerable<PersonDTO> GetPeople()
         {
-            return db.People;
+            //return repository.GetAll().AsQueryable();
+            List<PersonDTO> list = new List<PersonDTO>();
+            foreach (var person in repository.GetAll())
+            {
+                list.Add(new PersonDTO(person));
+            }
+
+            return list;
         }
 
         // GET: api/People/5
         [ResponseType(typeof(Person))]
         public async Task<IHttpActionResult> GetPerson(int id)
         {
-            Person person = await db.People.FindAsync(id);
+            Person person = repository.GetById(id);
             if (person == null)
             {
                 return NotFound();
@@ -50,11 +57,11 @@ namespace DAB_Handin3.Controllers
                 return BadRequest();
             }
 
-            db.Entry(person).State = EntityState.Modified;
+            repository.Update(person);
 
             try
             {
-                await db.SaveChangesAsync();
+                repository.Save();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -75,30 +82,31 @@ namespace DAB_Handin3.Controllers
         [ResponseType(typeof(Person))]
         public async Task<IHttpActionResult> PostPerson(Person person)
         {
-            db.Configuration.LazyLoadingEnabled = false;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.People.Add(person);
-            await db.SaveChangesAsync();
+            repository.Insert(person);
+            repository.Save();
 
-            return CreatedAtRoute("DefaultApi", new { id = person.PersonID }, person);
+            var dto = new PersonDTO(person);
+
+            return CreatedAtRoute("DefaultApi", new { id = person.PersonID }, dto);
         }
 
         // DELETE: api/People/5
         [ResponseType(typeof(Person))]
         public async Task<IHttpActionResult> DeletePerson(int id)
         {
-            Person person = await db.People.FindAsync(id);
+            Person person = repository.GetById(id);
             if (person == null)
             {
                 return NotFound();
             }
 
-            db.People.Remove(person);
-            await db.SaveChangesAsync();
+            repository.Delete(id);
+            repository.Save();
 
             return Ok(person);
         }
@@ -107,14 +115,14 @@ namespace DAB_Handin3.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                repository.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool PersonExists(int id)
         {
-            return db.People.Count(e => e.PersonID == id) > 0;
+            return repository.GetAll().Count(e => e.PersonID == id) > 0;
         }
     }
 }
