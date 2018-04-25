@@ -26,9 +26,9 @@ namespace DAB_Handin3.Controllers
 
         // GET: api/Telefons/5
         [ResponseType(typeof(Telefon))]
-        public async Task<IHttpActionResult> GetTelefon(string id)
+        public async Task<IHttpActionResult> GetTelefon(int id)
         {
-            Telefon telefon = repository.GetById(int.Parse(id));
+            Telefon telefon = repository.GetById(id);
             if (telefon == null)
             {
                 return NotFound();
@@ -39,14 +39,14 @@ namespace DAB_Handin3.Controllers
 
         // PUT: api/Telefons/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutTelefon(string id, Telefon telefon)
+        public async Task<IHttpActionResult> PutTelefon(int id, Telefon telefon)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != telefon.Nummer)
+            if (id != telefon.TelefonId)
             {
                 return BadRequest();
             }
@@ -88,7 +88,7 @@ namespace DAB_Handin3.Controllers
             }
             catch (DbUpdateException)
             {
-                if (TelefonExists(telefon.Nummer))
+                if (TelefonExists(telefon.TelefonId))
                 {
                     return Conflict();
                 }
@@ -103,15 +103,15 @@ namespace DAB_Handin3.Controllers
 
         // DELETE: api/Telefons/5
         [ResponseType(typeof(Telefon))]
-        public async Task<IHttpActionResult> DeleteTelefon(string id)
+        public async Task<IHttpActionResult> DeleteTelefon(int id)
         {
-            Telefon telefon = repository.GetById(int.Parse(id));
+            Telefon telefon = repository.GetById(id);
             if (telefon == null)
             {
                 return NotFound();
             }
 
-            repository.Delete(int.Parse(id));
+            repository.Delete(id);
             repository.Save();
 
             return Ok(telefon);
@@ -126,9 +126,9 @@ namespace DAB_Handin3.Controllers
             base.Dispose(disposing);
         }
 
-        private bool TelefonExists(string id)
+        private bool TelefonExists(int id)
         {
-            return repository.GetAll().Count(e => e.Nummer == id) > 0;
+            return repository.GetAll().Count(e => e.TelefonId == id) > 0;
         }
     }
 }

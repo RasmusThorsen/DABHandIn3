@@ -9,6 +9,7 @@ namespace DAB_Handin3.Models
     public class Telefon
     {
         [Key]
+        public int TelefonId { get; set; }
         public string Nummer { get; set; }
         public string Type { get; set; }
         public string Teleselskab { get; set; }

@@ -210,6 +210,10 @@
     <Compile Include="Migrations\201804201421570_SeedingDatabaseWithData.Designer.cs">
       <DependentUpon>201804201421570_SeedingDatabaseWithData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804251401445_ModelIDs.cs" />
+    <Compile Include="Migrations\201804251401445_ModelIDs.Designer.cs">
+      <DependentUpon>201804251401445_ModelIDs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adresse.cs" />
     <Compile Include="Models\AdresseDTO.cs" />
@@ -302,6 +306,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804201421570_SeedingDatabaseWithData.resx">
       <DependentUpon>201804201421570_SeedingDatabaseWithData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804251401445_ModelIDs.resx">
+      <DependentUpon>201804251401445_ModelIDs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

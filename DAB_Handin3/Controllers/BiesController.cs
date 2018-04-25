@@ -26,9 +26,9 @@ namespace DAB_Handin3.Controllers
 
         // GET: api/Bies/5
         [ResponseType(typeof(By))]
-        public async Task<IHttpActionResult> GetBy(string id)
+        public async Task<IHttpActionResult> GetBy(int id)
         {
-            By by = repository.GetById(int.Parse(id));
+            By by = repository.GetById(id);
             if (by == null)
             {
                 return NotFound();
@@ -39,14 +39,14 @@ namespace DAB_Handin3.Controllers
 
         // PUT: api/Bies/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutBy(string id, By by)
+        public async Task<IHttpActionResult> PutBy(int id, By by)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != by.Postnummer)
+            if (id != by.ById)
             {
                 return BadRequest();
             }
@@ -89,7 +89,7 @@ namespace DAB_Handin3.Controllers
             }
             catch (DbUpdateException)
             {
-                if (ByExists(by.Postnummer))
+                if (ByExists(by.ById))
                 {
                     return Conflict();
                 }
@@ -99,20 +99,20 @@ namespace DAB_Handin3.Controllers
                 }
             }
             
-            return CreatedAtRoute("DefaultApi", new { id = by.Postnummer }, by);
+            return CreatedAtRoute("DefaultApi", new { id = by.ById }, by);
         }
 
         // DELETE: api/Bies/5
         [ResponseType(typeof(By))]
-        public async Task<IHttpActionResult> DeleteBy(string id)
+        public async Task<IHttpActionResult> DeleteBy(int id)
         {
-            By by = repository.GetById(int.Parse(id));
+            By by = repository.GetById(id);
             if (by == null)
             {
                 return NotFound();
             }
 
-            repository.Delete(int.Parse(id));
+            repository.Delete(id);
             repository.Save();
 
             return Ok(by);
@@ -127,9 +127,9 @@ namespace DAB_Handin3.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ByExists(string id)
+        private bool ByExists(int id)
         {
-            return repository.GetAll().Count(e => e.Postnummer == id) > 0;
+            return repository.GetAll().Count(e => e.ById == id) > 0;
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Repository
 
         public By GetById(int id)
         {
-            return context.Bies.Find(id.ToString());
+            return context.Bies.Find(id);
         }
 
         public void Insert(By entity)
