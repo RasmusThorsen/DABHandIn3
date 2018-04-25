@@ -19,9 +19,16 @@ namespace DAB_Handin3.Controllers
         private ByRepository repository = new ByRepository(new DAB_Handin3Context());
 
         // GET: api/Bies
-        public IQueryable<By> GetBies()
+        public IEnumerable<ByDTO> GetBies()
         {
-            return repository.GetAll().AsQueryable();
+            //return repository.GetAll();
+            var list = new List<ByDTO>();
+            foreach (var by in repository.GetAll())
+            {
+                list.Add(new ByDTO(by));
+            }
+
+            return list;
         }
 
         // GET: api/Bies/5
@@ -98,8 +105,8 @@ namespace DAB_Handin3.Controllers
                     throw;
                 }
             }
-            
-            return CreatedAtRoute("DefaultApi", new { id = by.ById }, by);
+            var dto = new ByDTO(by);
+            return CreatedAtRoute("DefaultApi", new { id = by.ById }, dto);
         }
 
         // DELETE: api/Bies/5

@@ -89,7 +89,7 @@ namespace DAB_Handin3.Controllers
 
             repository.Insert(person);
             repository.Save();
-
+               
             var dto = new PersonDTO(person);
 
             return CreatedAtRoute("DefaultApi", new { id = person.PersonID }, dto);

@@ -216,10 +216,13 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adresse.cs" />
-    <Compile Include="Models\AdresseDTO.cs" />
+    <Compile Include="Models\AdresseDetailsDTO.cs" />
+    <Compile Include="Models\PersonDetailsDTO.cs" />
     <Compile Include="Models\By.cs" />
+    <Compile Include="Models\ByDTO.cs" />
     <Compile Include="Models\DAB_Handin3Context.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\AdresseDTO.cs" />
     <Compile Include="Models\PersonDTO.cs" />
     <Compile Include="Models\Telefon.cs" />
     <Compile Include="Models\TelefonDTO.cs" />

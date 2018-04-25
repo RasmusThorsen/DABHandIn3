@@ -19,5 +19,6 @@ namespace DAB_Handin3.Models
             Type = t.Type;
             Teleselskab = t.Teleselskab;
         }
+
     }
 }

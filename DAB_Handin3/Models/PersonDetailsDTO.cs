@@ -5,7 +5,7 @@ using System.Web;
 
 namespace DAB_Handin3.Models
 {
-    public class PersonDTO
+    public class PersonDetailsDTO
     {
         public int PersonID { get; set; }
         public List<AdresseDTO> Adresse { get; set; }
@@ -16,7 +16,7 @@ namespace DAB_Handin3.Models
         public string Type { get; set; }
         public string Email { get; set; }
 
-        public PersonDTO(Person p)
+        public PersonDetailsDTO(Person p)
         {
             PersonID = p.PersonID;
             Fornavn = p.Fornavn;
@@ -27,16 +27,10 @@ namespace DAB_Handin3.Models
             Adresse = new List<AdresseDTO>();
             Telefon = new List<TelefonDTO>();
 
-            foreach (var adr in p.Adresse)
-            {
-                Adresse.Add(new AdresseDTO(adr));
-            }
-
             foreach (var telefon in p.Telefon)
             {
                 Telefon.Add(new TelefonDTO(telefon));
             }
-
         }
 
     }

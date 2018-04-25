@@ -18,13 +18,13 @@ namespace DAB_Handin3.Controllers
     {
         private AdresseRepository repository = new AdresseRepository(new DAB_Handin3Context());
         // GET: api/Adresses
-        public IEnumerable<AdresseDTO> GetAdresses()
+        public IEnumerable<AdresseDetailsDTO> GetAdresses()
         {
             //return repository.GetAll();
-            List<AdresseDTO> list = new List<AdresseDTO>();
+            List<AdresseDetailsDTO> list = new List<AdresseDetailsDTO>();
             foreach (var adresse in repository.GetAll())
             {
-                list.Add(new AdresseDTO(adresse));
+                list.Add(new AdresseDetailsDTO(adresse));
             }
 
             return list;
@@ -89,7 +89,7 @@ namespace DAB_Handin3.Controllers
             repository.Insert(adresse);
             repository.Save();
 
-            var dto = new AdresseDTO(adresse);
+            var dto = new AdresseDetailsDTO(adresse);
 
             return CreatedAtRoute("DefaultApi", new { id = adresse.AdresseID }, dto);
         }
