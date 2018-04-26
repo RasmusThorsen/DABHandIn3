@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27428.2027
+VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3.2_RelationelDB", "DAB_Handin3\3.2_RelationelDB.csproj", "{48A019A4-A140-4853-B2B3-3A714F8EEC99}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3.3_DocumentDB", "DAB_HandIn_3.3\DAB_HandIn_3.3\3.3_DocumentDB.csproj", "{994FFC9A-BF0C-470F-B513-14D5E0018893}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAB_HandIn_3.3", "DAB_HandIn_3.3\DAB_HandIn_3.3.csproj", "{994FFC9A-BF0C-470F-B513-14D5E0018893}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{48A019A4-A140-4853-B2B3-3A714F8EEC99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{48A019A4-A140-4853-B2B3-3A714F8EEC99}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{48A019A4-A140-4853-B2B3-3A714F8EEC99}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{48A019A4-A140-4853-B2B3-3A714F8EEC99}.Release|Any CPU.Build.0 = Release|Any CPU
 		{994FFC9A-BF0C-470F-B513-14D5E0018893}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{994FFC9A-BF0C-470F-B513-14D5E0018893}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{994FFC9A-BF0C-470F-B513-14D5E0018893}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -26,6 +20,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {80812350-7854-42C6-A287-C42042390BA4}
+		SolutionGuid = {E8462A20-8AA7-40FB-BF58-DD3E1E8E29EE}
 	EndGlobalSection
 EndGlobal
