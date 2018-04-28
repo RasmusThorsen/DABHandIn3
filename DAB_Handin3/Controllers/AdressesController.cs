@@ -35,12 +35,13 @@ namespace DAB_Handin3.Controllers
         public async Task<IHttpActionResult> GetAdresse(int id)
         {
             Adresse adresse = repository.GetById(id);
+            var adresseDTO = new AdresseDetailsDTO(adresse);
             if (adresse == null)
             {
                 return NotFound();
             }
 
-            return Ok(adresse);
+            return Ok(adresseDTO);
         }
 
         // PUT: api/Adresses/5

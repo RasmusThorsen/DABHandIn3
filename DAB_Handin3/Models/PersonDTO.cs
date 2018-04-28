@@ -8,7 +8,6 @@ namespace DAB_Handin3.Models
     public class PersonDTO
     {
         public int PersonID { get; set; }
-        public List<AdresseDTO> Adresse { get; set; }
         public List<TelefonDTO> Telefon { get; set; }
         public string Fornavn { get; set; }
         public string Mellemnavn { get; set; }
@@ -24,13 +23,7 @@ namespace DAB_Handin3.Models
             Efternavn = p.Efternavn;
             Type = p.Type;
             Email = p.Email;
-            Adresse = new List<AdresseDTO>();
             Telefon = new List<TelefonDTO>();
-
-            foreach (var adr in p.Adresse)
-            {
-                Adresse.Add(new AdresseDTO(adr));
-            }
 
             foreach (var telefon in p.Telefon)
             {

@@ -214,6 +214,10 @@
     <Compile Include="Migrations\201804251401445_ModelIDs.Designer.cs">
       <DependentUpon>201804251401445_ModelIDs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804281622305_opdatering.cs" />
+    <Compile Include="Migrations\201804281622305_opdatering.Designer.cs">
+      <DependentUpon>201804281622305_opdatering.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Adresse.cs" />
     <Compile Include="Models\AdresseDetailsDTO.cs" />
@@ -312,6 +316,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804251401445_ModelIDs.resx">
       <DependentUpon>201804251401445_ModelIDs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804281622305_opdatering.resx">
+      <DependentUpon>201804281622305_opdatering.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

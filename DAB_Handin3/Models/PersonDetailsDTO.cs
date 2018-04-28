@@ -31,6 +31,11 @@ namespace DAB_Handin3.Models
             {
                 Telefon.Add(new TelefonDTO(telefon));
             }
+
+            foreach (var adress in p.Adresse)
+            {
+                Adresse.Add(new AdresseDTO(adress));
+            }
         }
 
     }
